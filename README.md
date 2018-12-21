@@ -1,6 +1,9 @@
  # low-level-basic
 A very low level basic programming language
 
+## Run a program
+'./ llb ./pathtoprogram'
+
 ## Design
 
 This basic dialect is designed to be simple enough to implement in almost any language on any hardware, as its commands mirror assembly programming.
