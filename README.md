@@ -26,13 +26,16 @@ LLB's memory and variables are accessed by number. The standard implementation r
 #### ptry [Integer]
 #### ptrz [Integer]
 Sets pointer to a location in memory
+
 `ptrx 10`
+
 Pointer x now points at memory loc 10
 
 #### putx [Integer]
 #### puty [Integer]
 #### putz [Integer]
 Stores a value in the memory at the pointer
+
 `
 ptrx 10
 putx 15
@@ -43,14 +46,17 @@ The memory location at 10 is now 15
 #### movy [Integer]
 #### movz [Integer]
 Copies the value of memory at pointer x to another memory location
+
 `
 ptrx 0
 putx 15
 movx 1
 `
+
 Memory location 1 now is 15
 #### swap
 Swaps the memory values at pointer x and pointer y
+
 `
 ptrx 0
 putx 15
@@ -64,7 +70,9 @@ swap
 
 #### goto [Integer]
 Moves execution pointer to line #
+
 `goto 10`
+
 Executes command at line 10 next
 #### if= [Integer]
 #### if> [Integer]
@@ -72,6 +80,7 @@ Executes command at line 10 next
 #### if<= [Integer]
 #### if>= [Integer]
 if value at ptrx [>,<,=,>=,<=,!=] value at ptr y then goes to line #
+
 `
 ptrx 0
 putx 25
@@ -81,11 +90,14 @@ if> 7
 end
 rem greater than
 `
+
 #### end
 Terminates the program
+
 `end`
 #### rem
 Ignored by compiler
+
 `rem this is a comment`
 
 ### Arithmetic
@@ -106,6 +118,7 @@ puty 10
 ptrz 2
 mod
 `
+
 Memory 2 is now 6 (116%10)
 
 
