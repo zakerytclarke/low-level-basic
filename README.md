@@ -72,18 +72,15 @@ Executes command at line 10 next
 #### if<= [Integer]
 #### if>= [Integer]
 if value at ptrx [>,<,=,>=,<=,!=] value at ptr y then goes to line #
-
 `
-1. ptrx 0
-2. putx 25
-3. ptry 0
-4. puty 15
-5. if> 7
-6. end
-7. rem greater than
+ptrx 0
+putx 25
+ptry 0
+puty 15
+if> 7
+end
+rem greater than
 `
-
-
 #### end
 Terminates the program
 `end`
