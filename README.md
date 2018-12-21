@@ -122,4 +122,4 @@ Reads in a numerical value from stdin to memory loc
 #### inpc [Integer]
 Reads in a character value from stdin to memory loc
 #### inps [Integer]
-Reads in character values from stdin to memory starting at loc
+Reads in character values from stdin to memory starting at ptrx

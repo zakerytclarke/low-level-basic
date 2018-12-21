@@ -68,9 +68,14 @@ void exec(int com,int arg);
 /**
  * Reads in a program and executes
  */
-int main(){
+int main(int argc,char *argv[]){
+  FILE *file;
+
+  file = fopen(argv[1], "r");
+
+
   char c;
-  c=getchar();
+  c=(char)fgetc(file);
   //Read until eof
   while(c!=EOF){
     char comStr[10]="";
@@ -78,11 +83,11 @@ int main(){
     //One line at a time
     while(c!='\n'){
       comStr[comStrPtr]=c;
-      c=getchar();
+      c=fgetc(file);
       comStrPtr++;
     }
     lllb(comStr);
-    c=getchar();
+    c=fgetc(file);
   }
   coms[prgmPtr]=28;
   run();
@@ -253,14 +258,24 @@ void exec(int com,int arg){
 
   if(!strcmp(commands[com],"inp")){
     int c=getchar();
-    mem[arg]=c;
+    while(c!='\n'){
+      mem[arg]=10*mem[arg]+(c-'0');
+      c=getchar();
+    }
+
   }
   if(!strcmp(commands[com],"inpc")){
     int c=getchar();
     mem[arg]=c;
   }
   if(!strcmp(commands[com],"inps")){
-
+    int c=getchar();
+    while(c!='\n'&&arg>0){
+      mem[ptrz]=c;
+      arg--;
+      ptrz++;
+      c=getchar();
+    }
   }
 
 
@@ -283,6 +298,7 @@ void exec(int com,int arg){
   }
 
   if(!strcmp(commands[com],"end")){
+    printf("\n");
     exit(0);
   }
 

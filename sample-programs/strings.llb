@@ -1,2 +1,27 @@
-inp 0
-prt 0
+rem Name?
+ptrx 0
+putx 78
+ptrx 1
+putx 97
+ptrx 2
+putx 109
+ptrx 3
+putx 101
+ptrx 4
+putx 63
+ptrx 5
+putx 10
+prts 0
+rem Hi
+ptrx 0
+putx 72
+ptrx 1
+putx 105
+ptrx 2
+putx 32
+
+ptrz 3
+
+
+inps 10
+prts 0
