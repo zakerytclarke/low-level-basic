@@ -1,0 +1,15 @@
+rem Hello World
+ptrx 0
+putx 72
+ptrx 1
+putx 101
+ptrx 2
+putx 108
+ptrx 3
+putx 108
+ptrx 4
+putx 111
+rem Include new line
+ptrx 5
+putx 10
+prts 0

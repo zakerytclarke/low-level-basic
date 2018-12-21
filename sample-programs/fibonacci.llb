@@ -1,0 +1,28 @@
+ptrx 3
+putx 10000
+ptrx 4
+putx 32
+ptrx 5
+putx 10
+
+ptrx 0
+ptry 1
+ptrz 2
+
+putx 1
+puty 1
+
+
+prt 0
+prtc 4
+add
+
+movy 0
+movz 1
+ptry 3
+
+if> 27
+ptry 1
+goto 16
+prtc 5
+end
