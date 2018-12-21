@@ -10,119 +10,116 @@ This basic dialect is designed to be simple enough to implement in almost any la
 LLB's memory and variables are accessed by number. The standard implementation requires the following:
 - 10000 accessible float variables (7 decimal pt accuracy)
 - 3 pointers:
-  - ptr1: the first argument
-  - ptr2: the second argument
-  - ptr3: where the result is stored
+  - ptrx: pointer to memory (first argument)
+  - ptry: pointer to memory (second argument)
+  - ptrz: pointer to memory where result is stored
 
 
 ## Commands
 
 ### Memory Commands
 
-#### store [integer] [memory loc]
-`store 100 10`
-stores the value 100 into memory slot 10
-#### storeascii [character] [memory loc]
-`store a 10`
-stores the ascii value of 'a' (97) into memory slot 10
-#### storestr [string] [memory loc]
-`store str 10`
-stores the ascii value of 's' into slot 10; 't' into slot 11; 'r' into slot 12; and '\0' into slot 13
+#### ptrx [Integer]
+#### ptry [Integer]
+#### ptrz [Integer]
+Sets pointer to a location in memory
+`ptrx 10`
+Pointer x now points at memory loc 10
 
-#### move [memory loc] [memory loc]
-`move 10 20`
-Copies memory slot 10 into memory slot 20
+#### putx [Integer]
+#### puty [Integer]
+#### putz [Integer]
+Stores a value in the memory at the pointer
+`
+ptrx 10
+putx 15
+`
+The memory location at 10 is now 15
 
-#### swap [memory loc] [memory loc]
-`move 10 20`
-Swaps memory slot 10 with memory slot 20
-
-### Arithmetic
-
-#### add [memory loc] [memory loc]
-#### + [memory loc] [memory loc]
-`add 10 20`
-`+ 10 20`
-Adds the memory stored in 10 with the memory stored in 20 and stores in 10
-
-
-#### sub [memory loc] [memory loc]
-#### - [memory loc] [memory loc]
-
-`sub 10 20`
-`- 10 20`
-Subtratcs the memory stored in 10 by the memory stored in 20 and stores in 10
-
-#### mul [memory loc] [memory loc]
-#### * [memory loc] [memory loc]
-
-`mul 10 20`
-`* 10 20`
- Multiplies the memory stored in 10 by the memory stored in 20 and stores in 10
-
-#### div [memory loc] [memory loc]
-#### / [memory loc] [memory loc]
-
-`div 10 20`
-`/ 10 20`
-Divides the memory stored in 10 by the memory stored in 20 and stores in 10
-
-#### pow [memory loc] [memory loc]
-#### ^ [memory loc] [memory loc]
-
-`pow 10 20`
-`^ 10 20`
-Raises the memory stored in 10 to the memory stored in 20 and stores in 10
-
-#### mod [memory loc] [memory loc]
-#### % [memory loc] [memory loc]
-
-`mod 10 20`
-`% 10 20`
-Divides the memory stored in 10 by the memory stored in 20 and stores the remainder in 10
+#### movx [Integer]
+#### movy [Integer]
+#### movz [Integer]
+Copies the value of memory at pointer x to another memory location
+`
+ptrx 0
+putx 15
+movx 1
+`
+Memory location 1 now is 15
+#### swap
+Swaps the memory values at pointer x and pointer y
+`
+ptrx 0
+putx 15
+ptry 1
+puty 25
+swap
+`
 
 
 ### Logic
 
-#### goto [memory loc]
+#### goto [Integer]
+Moves execution pointer to line #
 `goto 10`
-Moves execution pointer to line # 10
+Executes command at line 10 next
+#### if= [Integer]
+#### if> [Integer]
+#### if< [Integer]
+#### if<= [Integer]
+#### if>= [Integer]
+if value at ptrx [>,<,=,>=,<=,!=] value at ptr y then goes to line #
 
-#### if [memory loc] [<,=,>,<=,>=,!=] [memory loc] goto [memory loc]
-`if 10 >= 20 goto 15`
-If memory 10 >= memory 20 move execution pointer to line # 15
-
-#### strcomp [memory loc] [memory loc] goto [memory loc]
-`if 10 20 goto 15`
-If memory 10 = memory 20 move execution pointer to line # 15
+`
+1. ptrx 0
+2. putx 25
+3. ptry 0
+4. puty 15
+5. if> 7
+6. end
+7. rem greater than
+`
 
 
 #### end
+Terminates the program
 `end`
-Stops executing the program
+#### rem
+Ignored by compiler
+`rem this is a comment`
+
+### Arithmetic
+
+#### add
+#### sub
+#### mul
+#### div
+#### pow
+#### mod
+Completes the given arithmetic operation on x,y and stores the result in z
+
+`
+ptrx 0
+putx 116
+ptry 1
+puty 10
+ptrz 2
+mod
+`
+Memory 2 is now 6 (116%10)
+
 
 ### Input/Output
 
-#### print [memory loc]
-`print 10`
-Prints the numerical value in memory 10
-
-#### printascii [memory loc]
-`printascii 10`
-Prints the ascii value in memory 10
-
-#### printstr [memory loc]
-`printstr 10`
-Prints the ascii values of the string starting in memory location 10
-
-#### input [memory loc]
-`input 10`
-Inputs one number from the user and stores it in memory 10
-
-#### inputascii [memory loc]
-`input 10`
-Inputs one character from the user and stores its ascii value in memory 10
-
-#### inputstr [memory loc] [integer]
-`inputstr 10 5`
-Inputs one string up to '\n' from the user and stores its ascii values in memory 10 - memory 15 (Maxx length 5)
+#### prt [Integer]
+Prints numerical value at memory loc
+#### prtc [Integer]
+Prints character value at memory loc
+#### prts [Integer]
+Prints string starting at memory loc until '\0'
+#### inp [Integer]
+Reads in a numerical value from stdin to memory loc
+#### inpc [Integer]
+Reads in a character value from stdin to memory loc
+#### inps [Integer]
+Reads in character values from stdin to memory starting at loc

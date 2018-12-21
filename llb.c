@@ -1,7 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <math.h>
 
+//All keywords
 char* commands[]=
 {
   "ptrx",
@@ -44,11 +46,15 @@ char* commands[]=
   "rem"
 };
 
-int coms[100];
-int args[100];
+//The program storage
+int coms[10000];
+int args[10000];
+//Current exec
 int prgmPtr=0;
 
-int mem[100];
+//Memory
+int mem[10000];
+//Pointers
 int ptrx=0;
 int ptry=0;
 int ptrz=0;
@@ -59,12 +65,17 @@ void lllb(char com[10]);
 void run();
 void exec(int com,int arg);
 
+/**
+ * Reads in a program and executes
+ */
 int main(){
   char c;
   c=getchar();
+  //Read until eof
   while(c!=EOF){
     char comStr[10]="";
     int comStrPtr=0;
+    //One line at a time
     while(c!='\n'){
       comStr[comStrPtr]=c;
       c=getchar();
@@ -78,6 +89,9 @@ int main(){
   return 0;
 }
 
+/**
+ * Process command and add to program
+ */
 void lllb(char com[10]){
 
   char comRun[4];
@@ -103,6 +117,7 @@ void lllb(char com[10]){
   while(k<30&&strcmp(commands[k],comRun)){
     k++;
   }
+  //Command exists
   if(k<30&&k>=0){
     coms[prgmPtr]=k;
     args[prgmPtr]=comArg;
@@ -117,7 +132,9 @@ void lllb(char com[10]){
 }
 
 
-
+/**
+ * Executes the program
+ */
 void run(){
   prgmPtr=0;
   while(1){
@@ -126,7 +143,9 @@ void run(){
   }
 }
 
-
+/**
+ * Executes a single command
+ */
 void exec(int com,int arg){
 
   //printf("%s %d\n",commands[com],arg);
@@ -208,11 +227,11 @@ void exec(int com,int arg){
   }
 
   if(!strcmp(commands[com],"pow")){
-
+    mem[ptrz]=pow(mem[ptrx],mem[ptry]);
   }
 
   if(!strcmp(commands[com],"mod")){
-
+    mem[ptrz]=mem[ptrx]%mem[ptry];
   }
 
 
@@ -233,10 +252,12 @@ void exec(int com,int arg){
   //Inputs
 
   if(!strcmp(commands[com],"inp")){
-
+    int c=getchar();
+    mem[arg]=c;
   }
   if(!strcmp(commands[com],"inpc")){
-
+    int c=getchar();
+    mem[arg]=c;
   }
   if(!strcmp(commands[com],"inps")){
 
