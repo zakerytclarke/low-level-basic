@@ -2,7 +2,7 @@
 A very low level basic programming language
 
 ## Run a program
-`./ llb ./pathtoprogram`
+`./llb ./pathtoprogram`
 
 ## Design
 
