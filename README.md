@@ -1,8 +1,12 @@
  # low-level-basic
 A very low level basic programming language
 
+## Installation
+1. Download source
+2. Execute `sudo ./install.sh` inside directory
+
 ## Run a program
-`./llb ./pathtoprogram`
+`llb ./pathtoprogram`
 
 ## Design
 
